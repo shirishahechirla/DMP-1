@@ -118,9 +118,7 @@ class Section1:
         X: NDArray[np.floating],
         y: NDArray[np.int32],
     ):
-        # Enter your code and fill the `answer` dictionary
-
-        clf=DecisionTreeClassifier(random_state=self.seed)
+         clf=DecisionTreeClassifier(random_state=self.seed)
         cv=KFold(n_splits=5,shuffle=True,random_state=self.seed)
         results=u.train_simple_classifier_with_cv(Xtrain=X,ytrain=y,
                                           clf=clf,
@@ -181,13 +179,13 @@ class Section1:
         answer["explain_kfold_vs_shuffle_split"] = 'Shuffle-Split compared to kfold offers more randomness in train/test splits can provide a better generalization error estimate, especially for datasets with uneven sample distribution'
         return answer
 
+
     # ----------------------------------------------------------------------
     """
     E. Repeat part D for 𝑘=2,5,8,16, but do not print the training time. 
        Note that this may take a long time (2–5 mins) to run. Do you notice 
        anything about the mean and/or standard deviation of the scores for each k?
     """
-
     def partE(
         self,
         X: NDArray[np.floating],
@@ -213,9 +211,6 @@ class Section1:
             answer[k]['clf']=clf
             answer[k]['cv']=cv
             answer[k]['scores']=cv_dict
-            
-            
-
         # Enter your code, construct the `answer` dictionary, and return it.
 
         return answer
@@ -256,6 +251,7 @@ class Section1:
 
         part_D=self.partD(X,y)
         
+
         answer = {}
 
         answer["clf_RF"] = clf_RF
@@ -342,20 +338,8 @@ class Section1:
          5) max_features 
          5) n_estimators
         """
+
         answer = {}
-
-        clf_rf=RandomForestClassifier(random_state=self.seed)
-        cv=ShuffleSplit(n_splits=5,random_state=self.seed)
-
-        clf_rf.fit(X,y)
-        # Predictions with the initial model
-        y_train_pred_orig = clf_rf.predict(X)
-        y_test_pred_orig = clf_rf.predict(Xtest)
-
-        conf_matrix_train_orig = confusion_matrix(y, y_train_pred_orig)
-        conf_matrix_test_orig = confusion_matrix(ytest, y_test_pred_orig)
-
-        # Accuracies
         accuracy_train_orig = nu.conf_mat_accuracy(conf_matrix_train_orig)
         accuracy_test_orig = nu.conf_mat_accuracy(conf_matrix_test_orig)
         
@@ -379,7 +363,7 @@ class Section1:
         conf_matrix_train_bst = confusion_matrix(y, y_train_pred_bst)
         conf_matrix_test_bst = confusion_matrix(ytest, y_test_pred_bst)
 
-        # Accuracies
+         # Accuracies
         accuracy_train_bst = nu.conf_mat_accuracy(conf_matrix_train_bst)
         accuracy_test_bst = nu.conf_mat_accuracy(conf_matrix_test_bst)
     
@@ -399,7 +383,9 @@ class Section1:
             "accuracy_best_full_testing": accuracy_test_bst
         }
 
-        
+
+
+        # Enter your code, construct the `answer` dictionary, and return it.
 
         """
            `answer`` is a dictionary with the following keys: 
