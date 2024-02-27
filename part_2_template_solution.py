@@ -79,26 +79,26 @@ class Section2:
         # Xtrain, ytrain, Xtest, ytest: the data used to fill the `answer`` dictionary
 
 
-        training_data, X_train, y_train, X_test, y_test = u.prepare_data()
-X_train = nu.scale_data(X_train)
-X_test = nu.scale_data(X_test)
+        Xtrain, ytrain, Xtest, ytest = u.prepare_data()
+        Xtrain = nu.scale_data(Xtrain)
+        Xtest = nu.scale_data(Xtest)
+        
+        answer = {}
+        answer["nb_classes_train"] = len(np.unique(ytrain))
+        answer["nb_classes_test"] = len(np.unique(ytest))
+        answer["class_count_train"] = np.bincount(ytrain)
+        answer["class_count_test"] = np.bincount(ytest)
+        answer["length_Xtrain"] = len(Xtrain)
+        answer["length_Xtest"] = len(Xtest)
+        answer["length_ytrain"] = len(ytrain)
+        answer["length_ytest"] = len(ytest)
+        answer["max_Xtrain"] = Xtrain.max()
+        answer["max_Xtest"] = Xtest.max()
+        
+        #Xtrain = Xtest = np.zeros([1, 1], dtype="float")
+        #ytrain = ytest = np.zeros([1], dtype="int")
 
-result_info = {}
-result_info["nb_classes_train"] = len(np.unique(y_train))
-result_info["nb_classes_test"] = len(np.unique(y_test))
-result_info["class_count_train"] = np.bincount(y_train)
-result_info["class_count_test"] = np.bincount(y_test)
-result_info["length_X_train"] = len(X_train)
-result_info["length_X_test"] = len(X_test)
-result_info["length_y_train"] = len(y_train)
-result_info["length_y_test"] = len(y_test)
-result_info["max_X_train"] = X_train.max()
-result_info["max_X_test"] = X_test.max()
-
-# X_train = X_test = np.zeros([1, 1], dtype="float")
-# y_train = y_test = np.zeros([1], dtype="int")
-
-return result_info, X_train, y_train, X_test, y_test
+        return answer, Xtrain, ytrain, Xtest, ytest
 
     """
     B.  Repeat part 1.C, 1.D, and 1.F, for the multiclass problem. 
